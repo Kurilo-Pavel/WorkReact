@@ -1,5 +1,5 @@
 function NumbersList({value}) {
-  return <span>{value}</span>;
+  return <span>Long list: {value}</span>;
 }
 
 export default NumbersList;

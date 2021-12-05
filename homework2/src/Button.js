@@ -5,5 +5,5 @@ class Button extends Component {
     const {text, id, onClick} = this.props;
     return <button id={id} onClick={onClick}>{text}</button>
   }
-};
+}
 export default Button;
