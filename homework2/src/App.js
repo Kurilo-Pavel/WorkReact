@@ -8,57 +8,58 @@ class App extends Component {
     super();
 
     this.state = {
-      value: this.RandomArray()
-    }
-  }
+      value: this.randomArray()
+    };
+  };
 
-  OneRandomNumber = () => {
+  oneRandomNumber = () => {
     return Math.floor(Math.random() * 100);
-  }
+  };
 
-  RandomArray = () => {
+  randomArray = () => {
     const arrayNumber = [];
-    const random = this.OneRandomNumber();
+    const random = this.oneRandomNumber();
     for (let i = 0; i <= random; i++) {
-      arrayNumber.push(this.OneRandomNumber());
+      arrayNumber.push(this.oneRandomNumber());
     }
     return arrayNumber
-  }
+  };
 
   addNumber = () => {
     const {value} = this.state;
-    value.push(this.OneRandomNumber());
     this.setState({
-      value: value,
+      value: [...value, this.oneRandomNumber()],
     });
   };
 
   sortNumber = (event) => {
     const {value} = this.state;
     const {id} = event.target;
-    if (id === 'ascending') {
-      value.sort((a, b) => {
-        return a - b;
-      });
-    }
-    if (id === 'waning') {
-      value.sort((a, b) => {
-        return b - a;
-      });
-    }
-    if (id === 'alphabet') {
-      value.sort();
+    switch (id) {
+      case "ascending":
+        value.sort((a, b) => {
+          return a - b;
+        });
+        break
+      case "descending":
+        value.sort((a, b) => {
+          return b - a;
+        });
+        break
+      case "alphabet":
+        value.sort();
+        break
     }
     this.setState({
       value: value,
     });
-  }
+  };
 
   resetNumber = () => {
     this.setState({
-      value: this.RandomArray()
-    })
-  }
+      value: this.randomArray()
+    });
+  };
 
   render() {
     const {value} = this.state;
@@ -68,11 +69,11 @@ class App extends Component {
       <List value={value}/>
       <Button text="Add number" onClick={this.addNumber}/>
       <Button text="1,2,3...10" onClick={this.sortNumber} id="ascending"/>
-      <Button text="10,9,8...1" onClick={this.sortNumber} id="waning"/>
+      <Button text="10,9,8...1" onClick={this.sortNumber} id="descending"/>
       <Button text="alphabetSort" onClick={this.sortNumber} id="alphabet"/>
       <Button text="Reset" onClick={this.resetNumber}/>
     </>)
-  }
+  };
 }
 
 export default App;

@@ -3,7 +3,7 @@ function List({value}) {
     return (
       <li
         key={num.toString() + 'index' + index}>{num}</li>)
-  })
+  });
   return <ol>{listNumber}</ol>
 }
 
