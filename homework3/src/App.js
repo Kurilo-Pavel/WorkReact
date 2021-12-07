@@ -19,11 +19,6 @@ class App extends Component {
     this.setState({
       color: this.arrayColor[colorNumber],
     });
-
-    if (this.state.color === "yellow") {
-      alert("Color = YELLOW");
-      this.changeColor();
-    }
   };
 
   startChangeColor = () => {
