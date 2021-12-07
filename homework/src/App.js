@@ -4,8 +4,8 @@ import Span from "./Span";
 
 function App() {
     return <>
-        <Span  text="Hello world"/>
-        <Span  text="Hello people"/>
+        <Span text="Hello world"/>
+        <Span text="Hello people"/>
     </>;
 }
 
