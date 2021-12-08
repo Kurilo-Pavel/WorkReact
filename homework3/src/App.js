@@ -5,7 +5,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: "", text: "Start"
+      color: "",
+      text: "Start",
+      array: [],
     };
   };
 
@@ -24,7 +26,7 @@ class App extends Component {
   startChangeColor = () => {
     switch (this.state.text) {
       case 'Start': {
-        this.intervalId = setInterval(this.changeColor, 1000);
+        this.intervalId = setInterval(this.changeColor, 2000);
         this.setState({
           text: "Pause",
         });
@@ -41,9 +43,11 @@ class App extends Component {
   };
 
   render() {
-    const {color, text} = this.state;
+    const {color, text, array} = this.state;
 
-    return (<Button text={text} style={{backgroundColor: color}} onClick={this.startChangeColor}/>);
+    return (<>
+      <Button text={text} array = {array} style={{backgroundColor: color}} onClick={this.startChangeColor}/>
+    </>);
   };
 }
 
