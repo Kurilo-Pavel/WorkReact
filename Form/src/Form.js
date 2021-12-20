@@ -7,6 +7,15 @@ import FormRadio from "./FormRadio";
 import FormCheckbox from "./FormCheckbox";
 
 const telRegex = /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+const SERVICES = [
+  {value: 'smoke', label:'Smoke'},
+  {value: 'condition', label:'Condition'},
+  {value: 'bathroom', label:'Bathroom'},
+  {value: 'breakfast', label:'Breakfast'},
+  {value: 'alcohole', label:'Alcohole'},
+  {value: 'bike', label:'Bike'},
+]
+
 export default class FormFormik extends Component {
 
   render() {
@@ -22,7 +31,7 @@ export default class FormFormik extends Component {
           dateOut: '',
           adults: '2',
           children: '0',
-          smoke: false,
+          services: [],
         }}
 
         onSubmit={(formValues) => alert(JSON.stringify(formValues))}
@@ -51,7 +60,7 @@ export default class FormFormik extends Component {
           dateOut: Yup.date()
             .min(Yup.ref('dateIn'), "end date can't be before start date")
             .required('DateOut is required'),
-        })}
+        })}ё
       >
 
         <Form>
@@ -76,7 +85,14 @@ export default class FormFormik extends Component {
           <Field name="adults" component={FormInput} label="Adults" type="number"/>
           <Field name="children" component={FormInput} label="Children" type="number"/>
 
-          <Field name="smoke" component={FormCheckbox} label="Smoke"/>
+          <fieldset>
+            <legend>Services</legend>
+            <Field
+              name="services"
+              options={SERVICES}
+              component={FormCheckbox}
+            />
+          </fieldset>
 
           <button tupe="submit">Submit</button>
         </Form>
