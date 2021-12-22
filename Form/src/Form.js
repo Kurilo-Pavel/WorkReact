@@ -8,14 +8,17 @@ import FormCheckbox from "./FormCheckbox";
 
 const telRegex = /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 const SERVICES = [
-  {value: 'smoke', label:'Smoke'},
-  {value: 'condition', label:'Condition'},
-  {value: 'bathroom', label:'Bathroom'},
-  {value: 'breakfast', label:'Breakfast'},
-  {value: 'alcohole', label:'Alcohole'},
-  {value: 'bike', label:'Bike'},
+  {value: 'smoke', label: 'Smoke'},
+  {value: 'condition', label: 'Condition'},
+  {value: 'bathroom', label: 'Bathroom'},
+  {value: 'breakfast', label: 'Breakfast'},
+  {value: 'alcohole', label: 'Alcohole'},
+  {value: 'bike', label: 'Bike'},
+];
+const GENDER = [
+  {value: 'female', label: 'Female', name: 'gender'},
+  {value: 'male', label: 'Male', name: 'gender'},
 ]
-
 export default class FormFormik extends Component {
 
   render() {
@@ -25,7 +28,7 @@ export default class FormFormik extends Component {
           userName: '',
           email: '',
           tel: '',
-          gender: 'female',
+          gender: '',
           city: '',
           dateIn: '',
           dateOut: '',
@@ -60,7 +63,7 @@ export default class FormFormik extends Component {
           dateOut: Yup.date()
             .min(Yup.ref('dateIn'), "end date can't be before start date")
             .required('DateOut is required'),
-        })}ё
+        })} ё
       >
 
         <Form>
@@ -70,8 +73,11 @@ export default class FormFormik extends Component {
 
           <fieldset>
             <legend>Gender</legend>
-            <Field component={FormRadio} name="gender" label="Female" id="female"/>
-            <Field component={FormRadio} name="gender" label="Male" id="male"/>
+            <Field
+              name="gender"
+              options={GENDER}
+              component={FormRadio}
+            />
           </fieldset>
 
           <Field name="city" component={FormInput} label={"Where are you going?"}/>
